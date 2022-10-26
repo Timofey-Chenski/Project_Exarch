@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 onready var Player = get_parent().get_node("Player")
 
-func _ready(): 
+func _ready(): #initiates at enemy spawn
 	if is_instance_valid(Player):
-		position  = Player.position + Vector2(1000, 0).rotated(rand_range(0, 2*PI))
+		position  = Player.position + Vector2(rand_range(600,900), 0).rotated(rand_range(0, 2*PI))
 		
 func _physics_process(delta): 
 	if is_instance_valid(Player):
