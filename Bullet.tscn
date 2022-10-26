@@ -44,6 +44,7 @@ animations = [ {
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource( 31 )
+speed = 220.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -62,4 +63,3 @@ animation = "Projectile"
 frame = 26
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
