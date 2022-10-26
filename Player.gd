@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
-export (int) var squadSize = 5
+export (int) var squadSize = 3
 export var velocity = Vector2()
 onready var animation = $RangerAnimation
 var traveledDistance = 0
@@ -29,12 +29,10 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
+	shoot()
 	if velocity.x == 0 and velocity.y == 0: 
 		animation.play("idle")
 		
-#	if traveledDistance >=50:
-#		shoot()
-#		traveledDistance = 0
 	
 
 func spawn(): 
@@ -47,5 +45,7 @@ func _on_Timer_timeout():
 
 func shoot():
 	var bullet = load("res://Bullet.tscn").instance()
-	bullet.position  = position + Vector2(0, 0).rotated(rand_range(0, 2*PI))
+	var rad = get_angle_to(velocity) 
+	bullet.position = position
+	bullet.rotate(rad)  
 	get_parent().add_child(bullet)

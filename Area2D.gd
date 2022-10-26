@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 export var maxRange = 1200.0
 export var speed = 120.0
@@ -11,7 +11,6 @@ func _physics_process(delta: float) -> void:
 	var distance = speed * delta
 	var motion = transform.x * speed * delta
 	position += motion
-	
 	_travelled_distance += distance
 	if _travelled_distance >= maxRange: queue_free()
 
@@ -30,3 +29,8 @@ func _physics_process(delta: float) -> void:
 #		Debug.DrawLine (this.transform.position, closestEnemy.transform.position);
 #	}
 #}
+
+
+
+func _on_Area2D_area_entered(area):
+	area.get_parent().queue_free()
