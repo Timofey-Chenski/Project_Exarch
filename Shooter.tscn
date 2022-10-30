@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/PlayerBow/2_atk/2_atk_8.png" type="Texture" id=1]
 [ext_resource path="res://Assets/PlayerBow/2_atk/2_atk_9.png" type="Texture" id=2]
 [ext_resource path="res://Assets/PlayerBow/2_atk/2_atk_10.png" type="Texture" id=3]
 [ext_resource path="res://Assets/PlayerBow/2_atk/2_atk_11.png" type="Texture" id=4]
+[ext_resource path="res://Shooter.gd" type="Script" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -13,12 +14,55 @@ animations = [ {
 "speed": 6.0
 } ]
 
+[sub_resource type="Animation" id=2]
+resource_name = "Shoot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "shoot" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
 [node name="Shooter" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 modulate = Color( 0.443137, 0.176471, 0.576471, 0.54902 )
 position = Vector2( 0, -64 )
 frames = SubResource( 1 )
 animation = "shoot"
-frame = 1
+frame = 3
 playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Shoot = SubResource( 2 )
