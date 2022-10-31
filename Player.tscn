@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PlayerBow/idle/idle_2.png" type="Texture" id=2]
 [ext_resource path="res://Assets/PlayerBow/run/run_1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/PlayerBow/idle/idle_1.png" type="Texture" id=4]
@@ -57,3 +57,9 @@ shape = SubResource( 3 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -21 )
 current = true
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="spawnTimer" to="." method="_on_Timer_timeout"]
