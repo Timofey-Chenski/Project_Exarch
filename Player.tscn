@@ -57,9 +57,3 @@ shape = SubResource( 3 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -21 )
 current = true
-
-[node name="spawnTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
-[connection signal="timeout" from="spawnTimer" to="." method="_on_Timer_timeout"]

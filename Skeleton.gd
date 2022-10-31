@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var Player = get_parent().get_node("Player")
+onready var Player = get_parent().get_node('%Player')
 var motion
 
 func _ready(): 
