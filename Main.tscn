@@ -39,14 +39,13 @@ tile_data = PoolIntArray( -2621500, 0, 65541, -2621499, 0, 262148, -2621498, 0, 
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Player" parent="YSort" instance=ExtResource( 3 )]
-unique_name_in_owner = true
-
-[node name="Bullet" parent="YSort" instance=ExtResource( 4 )]
-speed = 600.0
-
 [node name="Spawner" parent="YSort" instance=ExtResource( 5 )]
 
 [node name="Enemy" parent="YSort/Spawner" instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 2, -2 )
+
+[node name="Player" parent="YSort" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+
+[node name="Bullet" parent="YSort" instance=ExtResource( 4 )]

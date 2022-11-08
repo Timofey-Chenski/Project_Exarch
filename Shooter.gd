@@ -1,5 +1,7 @@
 extends Node2D
 
+var bullet = preload("res://Bullet.tscn").instance()
+
 func closestEnemy():
 	var closestEnemy = Vector2()
 	var distanceToClosestEnemy = INF
@@ -7,25 +9,18 @@ func closestEnemy():
 	var enemyList = enemy.get_children()
 	
 	for currentEnemy in range(1,enemyList.size()):
-		
 		var distanceToEnemy = (enemyList[currentEnemy].position - position).length_squared()
-
-		
 		if distanceToEnemy < distanceToClosestEnemy:
 			distanceToClosestEnemy = distanceToEnemy
 			closestEnemy = enemyList[currentEnemy].position
-			
 	return closestEnemy
 
 func shoot() -> void:
-	var bullet = load("res://Bullet.tscn").instance()
-	var bulletVector = Vector2()
-	var target = closestEnemy()
-	bulletVector = position 
 	bullet.position = position
-	bullet.rotate(bulletVector.angle_to(target))
+	bullet.look_at(closestEnemy())
 	get_parent().add_child(bullet)
-	
-	
+
 func _ready():
+	if closestEnemy().x - position.x <=0: $AnimatedSprite.flip_h = true
+	else: $AnimatedSprite.flip_h = false
 	$AnimationPlayer.play("Shoot")

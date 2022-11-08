@@ -1,7 +1,7 @@
 extends Node2D
 
-export var maxRange = 1200.0
-export var speed = 600.0
+export var maxRange = 36000.0
+export var speed = 400.0
 onready var animator = $BulletAnimation
 
 var _travelled_distance = 0

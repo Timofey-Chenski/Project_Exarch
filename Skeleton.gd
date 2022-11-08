@@ -14,4 +14,3 @@ func _physics_process(delta):
 			$SkeletonAnimation.flip_h = false
 		else:
 			$SkeletonAnimation.flip_h = true
-			
