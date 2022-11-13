@@ -1,8 +1,11 @@
 extends Node2D
 
-export var maxRange = 36000.0
+export var maxRange = 2600.0
 export var speed = 400.0
+export var pierceCount = 1
 onready var animator = $BulletAnimation
+
+var pierced = 0
 
 var _travelled_distance = 0
 
@@ -13,8 +16,8 @@ func _physics_process(delta: float) -> void:
 	position += motion
 	_travelled_distance += distance
 	if _travelled_distance >= maxRange: queue_free()
-
+	if pierced >= pierceCount: queue_free()
 
 func _on_Area2D_area_entered(area):
 	area.get_parent().get_node("AnimationPlayer").play("Death")
-	queue_free()
+	pierced +=1

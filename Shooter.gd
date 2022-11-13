@@ -1,6 +1,7 @@
 extends Node2D
 
 var bullet = preload("res://Bullet.tscn").instance()
+export var pierceCount = 1
 
 func closestEnemy():
 	var closestEnemy = Vector2()
@@ -17,6 +18,7 @@ func closestEnemy():
 
 func shoot() -> void:
 	bullet.position = position
+	bullet.pierceCount = pierceCount
 	bullet.look_at(closestEnemy())
 	get_parent().add_child(bullet)
 
