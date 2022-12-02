@@ -1,10 +1,15 @@
 extends KinematicBody2D
 
-#Переменные для улучшения характеристик
+#Upradeable stats block
 export (int) var speed = 200
 export (int) var attackTriggerDistance = 18000
 export (int) var pierceCount = 1
-#Проверяемые переменные
+export (int) var damage = 10
+export (int) var health = 100
+export (int) var healthRegen = 0
+export (int) var armor = 0
+
+#Internal components
 export var velocity = Vector2()
 onready var animation = $RangerAnimation
 export var traveledDistance = 0
@@ -32,7 +37,7 @@ func get_input():
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	get_input()
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity) #func uses delta
 	if velocity.x == 0 and velocity.y == 0: 
 		animation.play("idle")
 	else:
@@ -45,4 +50,6 @@ func spawnShooter():
 	var shooter = load("res://Shooter.tscn").instance()
 	shooter.position = position
 	shooter.pierceCount = pierceCount
+	shooter.damage = damage
+	
 	get_parent().add_child(shooter)
