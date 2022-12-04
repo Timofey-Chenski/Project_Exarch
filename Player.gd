@@ -5,11 +5,12 @@ export (int) var speed = 200
 export (int) var attackTriggerDistance = 18000
 export (int) var pierceCount = 1
 export (int) var damage = 10
-export (int) var health = 100
+export (int) var maxHealth = 100
 export (int) var healthRegen = 0
 export (int) var armor = 0
 
 #Internal components
+var health = maxHealth
 export var velocity = Vector2()
 onready var animation = $RangerAnimation
 export var traveledDistance = 0
@@ -32,8 +33,6 @@ func get_input():
 		animation.play("run")
 	velocity = velocity.normalized() * speed
 
-
-
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	get_input()
@@ -53,3 +52,18 @@ func spawnShooter():
 	shooter.damage = damage
 	
 	get_parent().add_child(shooter)
+
+func hit(hitValue):
+	health -= hitValue - armor
+	if health <=0:
+		get_tree().reload_current_scene()
+
+func _on_RegenTimer_timeout():
+	if health < maxHealth:
+		health += healthRegen
+	elif health > maxHealth: health = maxHealth
+
+func _on_Hurt_area_entered(area):
+	if $InvulTimer.time_left == 0:
+		hit(area.get_parent().damage)
+		$InvulTimer.start()

@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export (int) var health = 20
+export (int) var damage = 20
 export (int) var healthRegen = 0
 export (int) var armor = 0
 
@@ -21,13 +22,13 @@ func _physics_process(delta):
 			$SkeletonAnimation.flip_h = true
 
 func dropUpgrade():
-	var pickUp = load("res://Pickup.tscn").instance()
 	var chance = randi() % 100 + 1 # 1 to 100
 	if chance <= 10:
+		var pickUp = load("res://Pickup.tscn").instance()
 		pickUp.position = position
 		get_parent().add_child(pickUp)
 	else: pass
 
-func hit(damage):
-	health -= damage - armor
+func hit(hitValue):
+	health -= hitValue - armor
 	if health <=0: $AnimationPlayer.play("Death")
