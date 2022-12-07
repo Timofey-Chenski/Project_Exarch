@@ -10,7 +10,7 @@ func closestEnemy():
 	var enemy = get_parent().get_node('Spawner')
 	var enemyList = enemy.get_children()
 	
-	for currentEnemy in range(1,enemyList.size()):
+	for currentEnemy in range(2,enemyList.size()):
 		var distanceToEnemy = (enemyList[currentEnemy].position - position).length_squared()
 		if distanceToEnemy < distanceToClosestEnemy:
 			distanceToClosestEnemy = distanceToEnemy
@@ -21,6 +21,7 @@ func shoot() -> void:
 	var target = closestEnemy()
 	target.y -= 19
 	bullet.position = position
+	bullet.position.y -=28
 	bullet.pierceCount = pierceCount
 	bullet.damage = damage
 	bullet.look_at(target)

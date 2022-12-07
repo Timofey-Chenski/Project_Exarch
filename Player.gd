@@ -58,6 +58,11 @@ func hit(hitValue):
 	if health <=0:
 		get_tree().reload_current_scene()
 
+func trueHit(hitValue):
+	health -= hitValue
+	if health <=0:
+		get_tree().reload_current_scene()
+
 func _on_RegenTimer_timeout():
 	if health < maxHealth:
 		health += healthRegen

@@ -76,7 +76,7 @@ z_index = 1
 script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-modulate = Color( 0.443137, 0.176471, 0.576471, 0 )
+modulate = Color( 0.443137, 0.176471, 0.576471, 0.366013 )
 position = Vector2( 0, -64 )
 frames = SubResource( 1 )
 animation = "shoot"

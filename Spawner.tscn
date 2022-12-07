@@ -9,4 +9,9 @@ script = ExtResource( 1 )
 wait_time = 3.0
 autostart = true
 
+[node name="UpgradeTimer" type="Timer" parent="."]
+wait_time = 120.0
+autostart = true
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="UpgradeTimer" to="." method="_on_UpgradeTimer_timeout"]
