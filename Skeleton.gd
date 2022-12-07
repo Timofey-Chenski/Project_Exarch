@@ -26,7 +26,7 @@ func _physics_process(delta):
 
 func dropUpgrade():
 	var chance = randi() % 100 + 1 # 1 to 100
-	if chance <= 100:
+	if chance <= 15:
 		var pickUp = load("res://Pickup.tscn").instance()
 		pickUp.position = position
 		get_parent().add_child(pickUp)
