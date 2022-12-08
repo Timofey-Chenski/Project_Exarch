@@ -6,8 +6,8 @@ export (int) var attackTriggerDistance = 18000
 export (int) var pierceCount = 1
 export (int) var damage = 10
 export (int) var maxHealth = 100
-export (int) var healthRegen = 0
-export (int) var armor = 0
+export (int) var healthRegen = 0 #0
+export (int) var armor = 0 #0
 
 #Internal components
 var health = maxHealth
