@@ -12,17 +12,18 @@ func _on_Pickup_body_entered(body):
 		pass
 		$AnimationPlayer.play("Misfire")
 	elif upgradeTicket<= 50:
-		body.maxHealth += 20
+		body.maxHealth += 10
+		body.health = body.maxHealth
 		$AnimationPlayer.play("MaxHP")
 	elif upgradeTicket<= 60:
-		body.speed += 20
+		body.speed += 10
 		$AnimationPlayer.play("Speed")
 	elif upgradeTicket<= 70:
 		if body.attackTriggerDistance >=6000:
 			body.attackTriggerDistance -=1000
 			$AnimationPlayer.play("Trigger")
 		else: 
-			body.speed += 20
+			body.speed += 10
 			$AnimationPlayer.play("Speed")
 	elif upgradeTicket<=80:
 		body.damage += 5
@@ -34,5 +35,5 @@ func _on_Pickup_body_entered(body):
 		body.pierceCount +=1
 		$AnimationPlayer.play("Pierce")
 	elif upgradeTicket<=100:
-		body.armor += 5
+		body.armor += 2
 		$AnimationPlayer.play("Armor")

@@ -22,10 +22,10 @@ func _on_Timer_timeout():
 		spawn()
 
 func _on_UpgradeTimer_timeout():
-	squadSize +=3
-	maxHealth +=20
+	squadSize +=1
+	maxHealth +=10
 	damage +=10
 	healthRegen +=5
 	armor +=5
-	speed +=50
+	speed +=20
 	
