@@ -14,6 +14,8 @@ var health = maxHealth
 export var velocity = Vector2()
 onready var animation = $RangerAnimation
 export var traveledDistance = 0
+var damaging = false
+var hurtValue = 0
 
 func get_input():
 	velocity = Vector2()
@@ -44,6 +46,9 @@ func _physics_process(delta):
 		if traveledDistance >= attackTriggerDistance:
 			spawnShooter()
 			traveledDistance = 0
+	while $InvulTimer.time_left == 0 and damaging == true:
+		hit(hurtValue)
+		$InvulTimer.start()
 
 func spawnShooter():
 	var shooter = load("res://Shooter.tscn").instance()
@@ -69,6 +74,8 @@ func _on_RegenTimer_timeout():
 	elif health > maxHealth: health = maxHealth
 
 func _on_Hurt_area_entered(area):
-	if $InvulTimer.time_left == 0:
-		hit(area.get_parent().damage)
-		$InvulTimer.start()
+	damaging = true
+	hurtValue=area.get_parent().damage
+
+func _on_HurtZone_area_exited(area):
+		damaging = false
